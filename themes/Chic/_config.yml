@@ -109,14 +109,10 @@ mathjax:
 #gitalk
 gitalk:
   enable: true
-  ClientID: 1e833d1e4d62d4006693
-  ClientSecret: d28ef9e655587cd02471c8d8afdd8f6bb54a556c
+  accessToken: 3e74db80e16c9104f76593616ecb2b2543e5d404
   repo: gitalk
   owner: xinyo
   adminUser: "['xinyo']"
-  ID: location.pathname
+  id: location.href
   labels: "['Gitalk']"
   perPage: 15
-  pagerDirection: last
-  createIssueManually: true
-  distractionFreeMode: false
