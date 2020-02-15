@@ -113,6 +113,6 @@ gitalk:
   repo: gitalk
   owner: xinyo
   adminUser: "['xinyo']"
-  id: location.href
+  id: md5(location.pathname)
   labels: "['Gitalk']"
   perPage: 15
