@@ -110,8 +110,8 @@ mathjax:
 gitalk:
   enable: true
   clientID: 1e833d1e4d62d4006693
-  clientSecret: 54870e6fefab8be05e69b8916e9703bfded0a627
-  accessToken: 6565302351650c679eb56987ce4cf3123d5d0619
+  clientSecret: 26ae7898d633da6abce2f7d7154e55226eeae656
+  accessToken: 0ccfa4a311aa5caf98afe4280f883b8c7572f86b
   repo: gitalk
   owner: xinyo
   adminUser: ['xinyo']
