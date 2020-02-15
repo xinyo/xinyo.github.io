@@ -191,13 +191,13 @@
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
  <script type="text/javascript">
-    var gitalk = new Gitalk({
+    const gitalk = new Gitalk({
         accessToken: '3e74db80e16c9104f76593616ecb2b2543e5d404',
         repo: 'gitalk',
         owner: 'xinyo',
         admin: '[&#39;xinyo&#39;]',
         id: '',
-        labels: '[&#39;Gitalk&#39;]',
+        labels: '{{ theme.gitalk.labels }}'.split(',').filter(l => l),
         perPage: '15'
     })
 
