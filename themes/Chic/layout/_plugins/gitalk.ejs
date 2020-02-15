@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 
 <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
 
@@ -6,11 +7,12 @@
     var gitalk = new Gitalk({
         clientID: '<%=theme.gitalk.ClientID%>',
         clientSecret: '<%=theme.gitalk.ClientSecret%>',
+        accessToken: '<%=theme.gitalk.accessToken%>',
         repo: '<%=theme.gitalk.repo%>',
         owner: '<%=theme.gitalk.owner%>',
         admin: '<%=theme.gitalk.adminUser%>',
-        id: '<%=theme.gitalk.ID%>',
-        labels: '<%=theme.gitalk.labels%>',
+        id: md5(location.pathname),
+        // labels: '{{ theme.gitalk.labels }}'.split(',').filter(l => l),
         perPage: '<%=theme.gitalk.perPage%>',
         createIssueManually: '<%=theme.gitalk.createIssueManually%>'
     })

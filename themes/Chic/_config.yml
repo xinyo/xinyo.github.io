@@ -111,7 +111,7 @@ gitalk:
   enable: true
   clientID: 1e833d1e4d62d4006693
   clientSecret: d28ef9e655587cd02471c8d8afdd8f6bb54a556c
-  accessToken: fff06affb71a4925c196cf10cc8636bae3941920
+  accessToken: 54870e6fefab8be05e69b8916e9703bfded0a627
   repo: gitalk
   owner: xinyo
   adminUser: ['xinyo']
