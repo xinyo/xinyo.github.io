@@ -83,6 +83,26 @@ document.ready(
         _Blog.toggleTheme();
 
         // ready function.
-
+        toggleTitle();
     }
 );
+
+// toggleTitle function.
+function toggleTitle() {
+    const pageTitle = document.title;
+    const returnMessage = '(●￣3￣●)/ 咦~又好了';
+    const attentionMessage = '╰( ˋ△ˊ )╯ 死鬼~去哪里了';
+  
+    document.addEventListener('visibilitychange', function(e) {
+        let isPageActive = !document.hidden;
+
+        if(!isPageActive){
+        document.title = attentionMessage;
+        }else {
+            document.title = returnMessage;
+            setTimeout(() => {
+                document.title = pageTitle;
+            }, 2500)
+        }
+    });
+}
