@@ -1,5 +1,5 @@
 # Header
-navname: Bentham's Blog
+navname: Xinyo's Blog
 
 # navigatior items
 nav:
@@ -12,11 +12,11 @@ nav:
 favicon: /favicon.ico
 
 # Profile
-nickname: Jeremy Bentham
+nickname: Xinyo
 
 ### this variable is MarkDown form.
-description: Lorem ipsum dolor sit amet, **consectetur adipiscing elit.** <br>Fusce eget urna vitae velit *eleifend interdum at ac* nisi.
-avatar: /image/avatar.jpeg
+description: 還想和你談論宇宙和天空<br>或是沙灘裡的碎石和人生
+avatar: /image/avatar.jpg
 
 # main menu navigation
 ## links key words should not be changed.
@@ -24,32 +24,33 @@ avatar: /image/avatar.jpeg
 ## Unused key can be commented out.
 links:
   Blog: /archives
-  # Category:
-  # Tags: 
-  # Link:
-  # Resume:
-  # Publish:
-  # Trophy:
-  # Gallery:
-  # RSS:
-  # AliPay:
-  ZhiHu: https://www.zhihu.com/people/sirice
-  # LinkedIn:
-  # FaceBook:
-  # Twitter:
-  # Skype:
-  # CodeSandBox:
-  # CodePen:
-  # Sketch:
-  # Gitlab:
-  # Dribbble:
-  Instagram:
-  Reddit:
-  # YouTube:
-  # QQ:
-  # Weibo:
-  # WeChat:
-  Github: https://github.com/Siricee
+#  Category:
+#  Tags: 
+#  Link:
+#  Resume:
+#  Publish:
+#  Trophy:
+#  Gallary:
+#  RSS:
+#  AliPay:
+#  ZhiHu: 
+#  LinkedIn:
+#  FaceBook:
+#  Twitter:
+#  Skype:
+#  CodeSandBox:
+#  CodePen:
+#  Sketch:
+#  Gitlab:
+#  Dribble:
+  Instagram: https://www.instagram.com/xinyoc/
+#  Reddit:
+#  YouTube:
+#  QQ:
+#  Weibo:
+#  WeChat:
+  Github: https://github.com/xinyo
+  Steam: 
 
 # how links show: you have 2 choice--text or icon.
 links_text_enable: false
@@ -70,7 +71,7 @@ post_copyright_permalink_enable: true
 post_copyright_license_enable: true
 post_copyright_license_text: Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE
 post_copyright_slogan_enable: true
-post_copyright_slogan_text: Do you believe in <strong>DESTINY</strong>?
+post_copyright_slogan_text: 還想和你談論宇宙和天空 或是沙灘裡的碎石和人生
 ## toc
 post_toc_enable: true
 
@@ -104,3 +105,16 @@ mathjax:
   import: demand # global or demand
   ## global: all pages will load mathjax,this will degrade performance and some grammers may be parsed wrong.
   ## demand: Recommend option,if your post need fomula, you can declare 'mathjax: true' in Front-matter
+
+#gitalk
+gitalk:
+  enable: true
+  clientID: 1e833d1e4d62d4006693
+  clientSecret: 26ae7898d633da6abce2f7d7154e55226eeae656
+  accessToken: 0ccfa4a311aa5caf98afe4280f883b8c7572f86b
+  repo: gitalk
+  owner: xinyo
+  adminUser: ['xinyo']
+  labels: ['Gitalk']
+  perPage: 15
+  createIssueManually: false
