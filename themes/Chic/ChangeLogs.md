@@ -1,4 +1,16 @@
 Changelogs
+## 2022.2.9
+
+\[enhancement\] optimize the layout of profile on the mobile terminal.
+
+## 2021.5.25
+
+\[fix bugs\] fixed issue#98. add rules of scrollbar in body.
+
+## 2020.3.28
+
+\[fix bugs\] merged PR#68. fix typo in links icon. 
+
 ## 2020.2.2
 
 \[enhancement\] add image-title. 
