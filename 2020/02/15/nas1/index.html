@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Xinyo">
+
+
+
+    <meta name="description" content="窝窝头 一块钱四个 嘿嘿">
+
+
+
+<title>宅家闲折腾 搭建自己的媒体库 系列一: 用FREENAS搭建NAS系统 | 拾荒蛋糕</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Xinyo&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Xinyo&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">宅家闲折腾 搭建自己的媒体库 系列一: 用FREENAS搭建NAS系统</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Xinyo</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 15, 2020&nbsp;&nbsp;13:31:10</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>去年搬新家了以后买了台新电视, 当时只想着以最低的成本买最大的尺寸, 于是选了这货 海信 75P7<br>什么都好就是毫无扩展能力, 除了预装的youtube netflix 和 Plex以外基本上不能再干啥了. 当初的想法是搭配nVIDIA Shield一起食用<br>然而当时的时间点比较尴尬, nVIDIA Shield 2019刚刚发布但是土澳发售时间却迟迟未定, 一拖再拖之下结果发现了这货 斐讯N1<br>只需要人民币一百块都不到就可以实现超越大多数电视盒子的解码能力 …真香<br>趁着年前就入手了</p>
+<p>这篇文章就是折腾之路的开始</p>
+<h1 id="NAS系统的搭建"><a href="#NAS系统的搭建" class="headerlink" title="NAS系统的搭建"></a>NAS系统的搭建</h1><h2 id="硬件方面"><a href="#硬件方面" class="headerlink" title="硬件方面"></a>硬件方面</h2><p>我的选择用手头上退休的x86架构的硬件来实现下岗再就业, 手头有CPU 内存 硬盘 机箱 电源, 上某宝买了块二手主板即可, 全部花费大概100多<br>这里建议大家选择自己手边合适的硬件即可<br>img</p>
+<h2 id="网路拓扑"><a href="#网路拓扑" class="headerlink" title="网路拓扑"></a>网路拓扑</h2><p>我使用的是手头上一个多年前的Linksys路由EA7500v2<br>现实环境下路由器即便支持5G频段1300M, 路由和网卡都支持MU-MIMO, 电脑放在路由旁边其实最多也只能跑到60MB/s左右<br>这里建议除非像我一样主力机离路由器较远而且不方便布线, 不然还是尽可能选择有线连接<br>img</p>
+<h1 id="选择FREENAS作为底层系统"><a href="#选择FREENAS作为底层系统" class="headerlink" title="选择FREENAS作为底层系统"></a>选择FREENAS作为底层系统</h1><p>基本的结构如下<br>硬件层 - 底层OS - 虚拟机 - Docker - 应用层<br>可以参考催眠的小伙伴司波图的<a href="https://www.bilibili.com/video/av63317880/" target="_blank" rel="noopener">玩转Freenas系统系列视频</a></p>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>U盘一个<br>最好有一个电视或者显示器连接在NAS主机上<br>基本的局域网知识</p>
+<h2 id="安装的过程"><a href="#安装的过程" class="headerlink" title="安装的过程"></a>安装的过程</h2><p>首先去FREENAS官网<a href="https://www.freenas.org/download-freenas-release/" target="_blank" rel="noopener">下载最新的镜像</a><br>用<code>Win32DiskImager</code>, <code>imageUSB</code>又或者你熟悉的镜像制作工具将下载好的镜像烧录到U盘里<br>插入U盘到NAS主机上, 重新启动; 这里注意可能需要到BIOS里面调整启动盘<br>进入安装界面 选 <code>1.Boot FreeNAS Installer</code><br><code>1 Install/Ugrade</code><br>接下来一步如果提示内存不足, 选YES继续即可<br>下一步选择系统的将会被安装到的磁盘, 注意整个磁盘都会被占用, 也可以安装到另一个容量8GB以上的U盘上将来以U盘的方式来启动<br>下一步提示全盘将会被格式化, 按确定<br>设置root账号的密码, 如果按cancel则留空<br>设置安装程序启动方式 选择默认即可<br>安装结束后选择<code>3 Reboot System</code>重启<br>这时候可以把安装的U盘拔掉了. 重启后记得再次进入BIOS设置新的启动盘为刚才安装好系统的磁盘<br>首次进入会花一点时间<br>等待完全加载完成后 选择<code>1 Configure Network Interface</code>, 设置好固定的IP地址(记得网段要跟家里局域网一致)方便日后使用, 现在你可以通过刚刚设置的地址又或者默认的<code>freenas.local</code>来访问FREENAS了</p>
+<h1 id="按F进入坦-我是说FREENAS"><a href="#按F进入坦-我是说FREENAS" class="headerlink" title="按F进入坦, 我是说FREENAS"></a>按F进入坦, 我是说FREENAS</h1><h2 id="基本设置"><a href="#基本设置" class="headerlink" title="基本设置"></a>基本设置</h2><p>用户名为<code>root</code>, 使用之前创建系统时设置的密码登陆</p>
+<p>如果需要中文可以在<code>System</code> -&gt; <code>General</code>里面设置<br>我们第一步还是要设置好网络环境 打开<code>Network</code> -&gt; <code>Global Configuration</code><br>这里把<code>IPv4 Default Gateway</code>以<code>及Nameserver</code>都设置成路由器的局域网IP</p>
+<h2 id="存储设置"><a href="#存储设置" class="headerlink" title="存储设置"></a>存储设置</h2><p>打开<code>Storage</code>, 点击右上添加<code>ADD</code>一个新的<code>Pool</code><br>随心所欲地设置名字(假设名字是<code>pool1</code>), 在左边列表里选择可用的磁盘, 创建即可<br>现在你有了你第一个存储池!<br>选择<code>pool1</code>最右边的下拉菜单, 选择<code>Add Dataset</code>创建一个新的<code>dataset</code>(假设名字是<code>dataset1</code>), dataset可以简单理解成一个文件夹<br>在FREENAS里, 这个dataset的地址就是<code>/mnt/pool1/dataset1</code></p>
+<h2 id="共享设置"><a href="#共享设置" class="headerlink" title="共享设置"></a>共享设置</h2><p>取决于你主力机的系统, 以Windows为例我们设置一个<a href="https://www.wikiwand.com/zh/%E4%BC%BA%E6%9C%8D%E5%99%A8%E8%A8%8A%E6%81%AF%E5%8D%80%E5%A1%8A" target="_blank" rel="noopener">SMB协议</a>的共享<br>打开<code>sharing</code>-&gt;<code>Windows (SMB) Shares</code> 依旧点击右上添加<br>点击文件夹图标选择想要共享的路径, 例如<code>/mnt/pool1/dataset1</code>, 保存</p>
+<h2 id="Windows下访问FREENAS的共享"><a href="#Windows下访问FREENAS的共享" class="headerlink" title="Windows下访问FREENAS的共享"></a>Windows下访问FREENAS的共享</h2><p>按下<code>win</code>+<code>r</code>打开运行界面<br>输入设置好的FREENAS地址 (如果忘记了, 可以在浏览器打开<a href="http://freenas.local/ui/dashboard" target="_blank" rel="noopener">freenas的控制面版</a>, 在<code>Primary NIC</code>下面就可以看到此ip地址)<br>打开后就可以看到<code>dataset1</code>的共享了, 右击它选择<code>网络硬盘映射</code>就可以把它添加到你的window里, 和平常普通的磁盘使用没有区别</p>
+<h1 id="尾巴"><a href="#尾巴" class="headerlink" title="尾巴"></a>尾巴</h1><p>现在你有了自己的NAS了! </p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Xinyo</span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://xinyo.github.io/2020/02/15/nas1/">https://xinyo.github.io/2020/02/15/nas1/</a></span>
+                    </p>
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>還想和你談論宇宙和天空 或是沙灘裡的碎石和人生</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/%E6%8A%98%E8%85%BE/"># 折腾</a>
+                    
+                        <a href="/tags/NAS/"># NAS</a>
+                    
+                        <a href="/tags/FreeNas/"># FreeNas</a>
+                    
+                        <a href="/tags/%E7%94%9F%E6%B4%BB/"># 生活</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2020/02/16/hexo-blog/">hexo</a>
+            
+            
+            <a class="next" rel="next" href="/2020/02/14/about/">Blog initial</a>
+            
+        </section>
+
+        
+            <div id="gitalk-container"></div>
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="/js/md5.js"></script>
+
+<script src="https://unpkg.com/gitalk/dist/gitalk.js"></script>
+
+ <script type="text/javascript">
+    var gitalk = new Gitalk({
+        clientID: '1e833d1e4d62d4006693',
+        clientSecret: '26ae7898d633da6abce2f7d7154e55226eeae656',
+        accessToken: '0ccfa4a311aa5caf98afe4280f883b8c7572f86b',
+        repo: 'gitalk',
+        owner: 'xinyo',
+        admin: ['xinyo'],
+        id: md5(location.pathname)
+        // labels: '{{ theme.gitalk.labels }}'.split(',').filter(l => l),
+        // perPage: '15',
+        // createIssueManually: false
+    })
+
+    gitalk.render('gitalk-container')
+</script>
+        
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Xinyo | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/xinyo/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+</html>
